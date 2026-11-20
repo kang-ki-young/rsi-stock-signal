@@ -55,7 +55,9 @@ def send(message):
 def main():
     if not os.getenv("TELEGRAM_BOT_TOKEN") or not os.getenv("TELEGRAM_CHAT_ID"):
         raise RuntimeError("텔레그램 설정이 없습니다.")
-
+if os.getenv("TEST_ALERT") == "1":
+    send("✅ RSI 주식 알림 테스트 성공!")
+    return
     errors = []
     for name, ticker in STOCKS.items():
         try:
